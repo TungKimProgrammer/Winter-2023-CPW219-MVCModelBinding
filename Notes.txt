@@ -1,0 +1,13 @@
+I created StudentsController to work with Database.
+For some reason when I testes, it returned error:
+
+Win32Exception: Unknown error (0x89c50118)
+Unknown location
+
+SqlException: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SNI_PN11, error: 50 - Local Database Runtime error occurred. Cannot create an automatic instance. See the Windows Application event log for error details.
+)
+Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, bool breakConnection, Action<Action> wrapCloseInAction)
+
+and down in the error details, it marked:
+line 25 of StudentsController.cs: return _context.Student != null ? 
+
