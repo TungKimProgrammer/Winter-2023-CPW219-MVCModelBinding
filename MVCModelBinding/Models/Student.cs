@@ -1,12 +1,16 @@
 ﻿
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.ComponentModel.DataAnnotations;
 
 namespace MVCModelBinding.Models
 {
 	public class Student
 	{
+		[Key] // Make this property primary key
+		public int Id { get; set; }
+
 		/// <summary>
 		/// The legal first name
 		/// </summary>
@@ -29,15 +33,17 @@ namespace MVCModelBinding.Models
 		// or set min and max in Model
 		[Required(ErrorMessage = "{0} is required.")]
 		[Display(Name = "Date Of Birth")]
+		// can't use multiple custom attributes when add StudentsController, ex: [DataType] 
 		[DataType(DataType.Date)] // display Date picker
-		public DateOnly DateOfBirth { get; set; }
+		public DateTime DateOfBirth { get; set; }
+		// changed DateOnly to DateTime because DateOnly not supported when create Database Controller
 
 		/// <summary>
 		/// The assigned school email address
 		/// </summary>
 		//[Required()]
 		[Display(Name = "Student Email")]
-		[DataType(DataType.EmailAddress)]
+		// [DataType(DataType.EmailAddress)]
 		[EmailAddress]
 		public string? StudentEmail { get; set; }
 
@@ -46,7 +52,7 @@ namespace MVCModelBinding.Models
 		/// </summary>
 		//[Required()]
 		[Display(Name = "Phone Number")]
-		[DataType(DataType.PhoneNumber)]
+		// [DataType(DataType.PhoneNumber)]
 		[Phone]
 		public string? PhoneNumber { get; set; }
 
