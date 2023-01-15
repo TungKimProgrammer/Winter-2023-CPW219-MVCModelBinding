@@ -23,7 +23,7 @@ namespace MVCModelBinding.Controllers
             {
                 FirstName = formData["first-name"],
                 LastName = formData["last-name"],
-                DateOfBirth = DateOnly.Parse(formData["date-of-birth"]),
+                DateOfBirth = DateTime.Parse(formData["date-of-birth"]),
                 StudentEmail = formData["school-email"],
                 PhoneNumber = formData["phone-number"]
             };
@@ -49,7 +49,7 @@ namespace MVCModelBinding.Controllers
             if (ModelState.IsValid)
             {
 				// Add to database 
-				// StudentDb.Add(stu);
+                StudentDB.Add(stu);
 
 				return RedirectToAction("Index", "Home");
 			}
